@@ -28,6 +28,14 @@ class EmpresaController extends Controller
             return view('admin.empresas.create', compact('paises', 'monedas' , 'estados', 'ciudades'));
  
     }
+    public function buscar_pais($id_pais){
+        try{
+            $estados = DB::table('states')->where('country_id', $id_pais)->get();
+            return view('admin.empresas.cargar_estados', compact('estados'));
+        }catch(\Exception $exception){
+            return response()->json(['mensaje'=>'error']);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
