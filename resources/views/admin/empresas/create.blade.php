@@ -35,13 +35,17 @@
 
                     {{-- Card Body --}}
                     <div class="card-body {{ $auth_type ?? 'login' }}-card-body {{ config('adminlte.classes_auth_body', '') }}">
-                        <form class="form" method="post" action="{{ url('crear-empresas/create') }}">
+                        <form class="form" method="post" action="{{ url('crear-empresas/create') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="formFile" class="form-label">Logo de la empresa</label>
-                                        <input name="logo" class="form-control" type="file" id="formFile" onchange="archivos(event)" required>
+                                        <label for="logo" class="form-label">Logo de la empresa</label>
+                                        <input accept=".png, .jpg, .jpeg" name="logo" class="form-control" type="file" id="logo" onchange="archivos(event)" required>
+                                        @error('logo')
+                                            <div class="alert alert-danger">Completa este campo</div>
+                                            
+                                        @enderror
                                         <div id="list" class="mx-auto w-100"></div>
                                         <script>
                                             function archivos(event) {
@@ -76,19 +80,28 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombre">Nombre de la empresa</label>
-                                                <input name="nombre_empresa" type="text" class="form-control" id="nombre" placeholder="Nombre de la empresa" required>
+                                                <input value="{{old('nombre_empresa')}}"  name="nombre_empresa" type="text" class="form-control" id="nombre" placeholder="Nombre de la empresa" required>
+                                                @error('nombre_empresa')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nit">NIT</label>
-                                                <input name="nit" type="text" class="form-control" id="nit" placeholder="NIT" required>
+                                                <input value="{{old('nit')}}"  name="nit" type="text" class="form-control" id="nit" placeholder="NIT" required>
+                                                @error('nit')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="tipo">Tipo de empresa</label>
-                                                <input name="tipo_empresa" type="text" class="form-control" id="tipo" placeholder="Tipo de empresa" required>
+                                                <label for="tipo_empresa">Tipo de empresa</label>
+                                                <input value="{{old('tipo_empresa')}}"  name="tipo_empresa" type="text" class="form-control" id="tipo_empresa" placeholder="Tipo de empresa" required>
+                                                @error('tipo_empresa')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -99,14 +112,20 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="phone">Telefono</label>
-                                                <input name="telefono" type="text" class="form-control" id="phone" placeholder="Telefono" required>
+                                                <label for="telefono">Telefono</label>
+                                                <input value="{{old('telefono')}}"  name="telefono" type="text" class="form-control" id="telefono" placeholder="Telefono" required>
+                                                @error('telefono')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="tipo">Correo electronico</label>
-                                                <input name="correo" type="email" class="form-control" id="tipo" placeholder="Correoelectronico" required>
+                                                <label for="correo">Correo electronico</label>
+                                                <input value="{{old('correo')}}"  name="correo" type="email" class="form-control" id="correo" placeholder="Correoelectronico" required>
+                                                @error('correo')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -126,13 +145,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombre_impuesto">Nombre del Impuesto</label>
-                                                <input name="nombre_impuesto" type="text" class="form-control" id="nombre_impuesto" placeholder="Nombre del impuesto" required>
+                                                <input value="{{old('nombre_impuesto')}}"  name="nombre_impuesto" type="text" class="form-control" id="nombre_impuesto" placeholder="Nombre del impuesto" required>
+                                                @error('nombre_impuesto')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="cantidad_impuesto">Cantidad de impuesto</label>
-                                                    <input name="cantidad_impuesto" type="number" class="form-control" id="cantidad_impuesto" required>
+                                                    <input value="{{old('cantidad_impuesto')}}"  name="cantidad_impuesto" type="number" class="form-control" id="cantidad_impuesto" required>
+                                                    @error('cantidad_impuesto')
+                                                    <div class="alert alert-danger">Completa este campo</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -187,7 +212,10 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="direccion">Direccion</label>
-                                                <input id="pac-input" class="form-control" name="direccion" type="text" placeholder="Buscar..." required>
+                                                <input value="{{old('direccion')}}"  id="pac-input" class="form-control" name="direccion" type="text" placeholder="Buscar..." required>
+                                                @error('direccion')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                                 <br>
                                                 <div id="map" style="width: 100%;height: 400px"></div>
                                             </div>

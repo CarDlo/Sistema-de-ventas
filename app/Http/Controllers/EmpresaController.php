@@ -50,8 +50,20 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-      $datos = $request->all();
-      return response()->json($datos);
+      //$datos = $request->all();
+      //return response()->json($datos);
+    
+        $request->validate([
+          'nombre_empresa' => 'required',
+          'nit' => 'required|unique:empresas',
+          'telefono' => 'required',
+          'correo' => 'required|unique:empresas',
+          'direccion' => 'required',
+          'logo' => 'required|image|mimes:jpeg,png,jpg',
+          'cantidad_impuesto' => 'required',
+          'nombre_impuesto' => 'required',
+          'tipo_empresa' => 'required',
+        ]);
     }
 
     /**
