@@ -44,7 +44,6 @@
                                         <input accept=".png, .jpg, .jpeg" name="logo" class="form-control" type="file" id="logo" onchange="archivos(event)" required>
                                         @error('logo')
                                             <div class="alert alert-danger">Completa este campo</div>
-                                            
                                         @enderror
                                         <div id="list" class="mx-auto w-100"></div>
                                         <script>
@@ -136,6 +135,9 @@
                                                         <option value="{{ $moneda->id }}">{{ $moneda->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('moneda')
+                                                <div class="alert alert-danger">Completa este campo</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -168,6 +170,9 @@
                                                             <option value="{{ $pais->phone_code }}">{{ $pais->phone_code }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('codigo_postal')
+                                                    <div class="alert alert-danger">Completa este campo</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -184,7 +189,9 @@
                                                             <option value="{{ $pais->id }}">{{ $pais->name }}</option>
                                                         @endforeach
                                                     </select>
-
+                                                    @error('pais')
+                                                    <div class="alert alert-danger">Completa este campo</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -193,6 +200,9 @@
                                                     <div id="respuesta_pais">
 
                                                     </div>
+                                                    @error('departamento')
+                                                    <div class="alert alert-danger">Completa este campo</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -201,6 +211,9 @@
                                                     <div id="respuesta_estado">
 
                                                     </div>
+                                                    @error('ciudad')
+                                                    <div class="alert alert-danger">Completa este campo</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 

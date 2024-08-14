@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('pais');
             $table->string('nombre_empresa');
             $table->string('tipo_empresa');
-            $table->string('nit');
+            $table->string('nit')->unique();
             $table->string('telefono');
-            $table->string('correo');
+            $table->string('correo')->unique();
             $table->integer('cantidad_impuesto');
             $table->string('nombre_impuesto');
             $table->string('moneda');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('departamento');
             $table->string('codigo_postal');
-            $table->text('logotipo');
+            $table->text('logo');
             $table->timestamps();
         });
     }

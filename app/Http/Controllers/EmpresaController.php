@@ -63,9 +63,38 @@ class EmpresaController extends Controller
           'cantidad_impuesto' => 'required',
           'nombre_impuesto' => 'required',
           'tipo_empresa' => 'required',
+          'moneda' => 'required',
+          'ciudad' => 'required',
+          'departamento' => 'required',
+          'codigo_postal' => 'required',
+          'pais' => 'required',
         ]);
+        $empresa = new Empresa();
+        $empresa->pais = $request->pais;
+        $empresa->nombre_empresa = $request->nombre_empresa;
+        $empresa->tipo_empresa = $request->tipo_empresa;
+        $empresa->nit = $request->nit;
+        $empresa->telefono = $request->telefono;
+        $empresa->correo = $request->correo;
+        $empresa->cantidad_impuesto = $request->cantidad_impuesto;
+        $empresa->nombre_impuesto = $request->nombre_impuesto;
+        $empresa->moneda = $request->moneda;
+        $empresa->direccion = $request->direccion;
+        $empresa->ciudad = $request->ciudad;
+        $empresa->departamento = $request->departamento;
+        $empresa->codigo_postal = $request->codigo_postal;
+        $empresa->logo = $request->file('logo')->store('logos', 'public');
+
+
+        $empresa->save();
+        return redirect()->route('admin.index')
+        ->with('info', 'La empresa se ha creado con exito');
+
     }
 
+
+
+    
     /**
      * Display the specified resource.
      */
