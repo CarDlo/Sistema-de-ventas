@@ -35,12 +35,13 @@
 
                     {{-- Card Body --}}
                     <div class="card-body {{ $auth_type ?? 'login' }}-card-body {{ config('adminlte.classes_auth_body', '') }}">
-                        <div class="form">
+                        <form class="form" method="post" action="{{ url('crear-empresas/create') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="formFile" class="form-label">Logo de la empresa</label>
-                                        <input class="form-control" type="file" id="formFile" onchange="archivos(event)">
+                                        <input name="logo" class="form-control" type="file" id="formFile" onchange="archivos(event)" required>
                                         <div id="list" class="mx-auto w-100"></div>
                                         <script>
                                             function archivos(event) {
@@ -75,19 +76,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombre">Nombre de la empresa</label>
-                                                <input type="text" class="form-control" id="nombre" placeholder="Nombre de la empresa">
+                                                <input name="nombre_empresa" type="text" class="form-control" id="nombre" placeholder="Nombre de la empresa" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nit">NIT</label>
-                                                <input type="text" class="form-control" id="nit" placeholder="NIT">
+                                                <input name="nit" type="text" class="form-control" id="nit" placeholder="NIT" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="tipo">Tipo de empresa</label>
-                                                <input type="text" class="form-control" id="tipo" placeholder="Tipo de empresa">
+                                                <input name="tipo_empresa" type="text" class="form-control" id="tipo" placeholder="Tipo de empresa" required>
                                             </div>
                                         </div>
 
@@ -99,13 +100,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="phone">Telefono</label>
-                                                <input type="text" class="form-control" id="phone" placeholder="Telefono">
+                                                <input name="telefono" type="text" class="form-control" id="phone" placeholder="Telefono" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="tipo">Correo electronico</label>
-                                                <input type="email" class="form-control" id="tipo" placeholder="Correoelectronico">
+                                                <input name="correo" type="email" class="form-control" id="tipo" placeholder="Correoelectronico" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -125,19 +126,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombre_impuesto">Nombre del Impuesto</label>
-                                                <input type="text" class="form-control" id="nombre_impuesto" placeholder="Nombre del impuesto">
+                                                <input name="nombre_impuesto" type="text" class="form-control" id="nombre_impuesto" placeholder="Nombre del impuesto" required>
                                             </div>
                                         </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="cantidad_impuesto">Cantidad de impuesto</label>
-                                                    <input type="number" class="form-control" id="cantidad_impuesto">
+                                                    <input name="cantidad_impuesto" type="number" class="form-control" id="cantidad_impuesto" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="codigo_postal">Codigo postal</label>
-                                                    <select name="" id="pais" class="form-control">
+                                                    <select name="codigo_postal" id="pais" class="form-control">
                                                         @foreach ($paises as $pais)
                                                             <option value="{{ $pais->phone_code }}">{{ $pais->phone_code }}</option>
                                                         @endforeach
@@ -153,7 +154,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="pais">Pais</label>
-                                                    <select name="" id="select_pais" class="form-control">
+                                                    <select name="pais" id="select_pais" class="form-control">
                                                         @foreach ($paises as $pais)
                                                             <option value="{{ $pais->id }}">{{ $pais->name }}</option>
                                                         @endforeach
@@ -172,11 +173,9 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="ciudad">Ciudad</label>
-                                                    <select name="" id="ciudad" class="form-control">
-                                                        {{-- @foreach ($ciudades as $ciudad)
-                                                            <option value="{{ $ciudad->id }}">{{ $ciudad->name }}</option>
-                                                        @endforeach --}}
-                                                    </select>
+                                                    <div id="respuesta_estado">
+
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -192,12 +191,19 @@
                                                 <br>
                                                 <div id="map" style="width: 100%;height: 400px"></div>
                                             </div>
-                                        </div>{{--Fin fila--}}
-
+                                        </div>
+                                    </div>{{--Fin fila--}}
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Crear empresa</button>
+                                        </div>
+                                    </div>{{--fin card body row--}}
                                 </div> {{--fin del col-md-8--}}
-                            </div>
-                        </div>
-                    </div>
+                            </div> {{--fin card body row--}}
+
+                        </form>{{--fin form--}}
+                    </div> {{--fin card-body--}}
 
                     {{-- Card Footer --}}
                     @hasSection('auth_footer')
@@ -206,13 +212,10 @@
                         </div>
                     @endif
 
-                </div>
-            </div>
-        </div>
-
-        
-
-    </div>
+                </div> {{--fin card--}}
+            </div> {{--fin col-md-12--}}
+        </div> {{--fin row container--}}
+    </div>{{--fin container-fluid--}}
 @stop
 
 @section('adminlte_js')
@@ -309,14 +312,32 @@
              if (id_pais) {
                  $.ajax({
                      type: "GET",
-                     url: "{{url('/crear-empresas')}}/"+id_pais,
+                     url: "{{url('/crear-empresas/pais')}}/"+id_pais,
                      success: function (data) {
                          $('#respuesta_pais').html(data);
                      }
                  })
              }else{
-                 
+                 alert('Por favor seleccione un pais');
              }                                        
          })
          </script>
+        <script>
+            $(document).on('change', '#select_estado', function() {
+                var id_estado = $(this).val();
+                if (id_estado) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{url('/crear-empresas/estado')}}/"+id_estado,
+                        success: function (data) {
+                            $('#respuesta_estado').html(data);
+                        }
+                    })
+                }else{
+                    alert('Por favor seleccione un estado');
+                }
+            })
+
+         </script>
+         
 @stop

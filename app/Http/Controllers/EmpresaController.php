@@ -28,10 +28,18 @@ class EmpresaController extends Controller
             return view('admin.empresas.create', compact('paises', 'monedas' , 'estados', 'ciudades'));
  
     }
-    public function buscar_pais($id_pais){
+    public function buscar_estado($id_pais){
         try{
             $estados = DB::table('states')->where('country_id', $id_pais)->get();
             return view('admin.empresas.cargar_estados', compact('estados'));
+        }catch(\Exception $exception){
+            return response()->json(['mensaje'=>'error']);
+        }
+    }
+    public function buscar_ciudad($id_estado){
+        try{
+            $ciudades = DB::table('cities')->where('state_id', $id_estado)->get();
+            return view('admin.empresas.cargar_ciudades', compact('ciudades'));
         }catch(\Exception $exception){
             return response()->json(['mensaje'=>'error']);
         }
@@ -42,7 +50,8 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $datos = $request->all();
+      return response()->json($datos);
     }
 
     /**
