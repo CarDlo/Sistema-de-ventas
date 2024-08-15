@@ -123,4 +123,19 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+        // ...
+        Spatie\Permission\PermissionServiceProvider::class,
+
+    ],
+
+    /*'providers' => [
+        // ...
+        Spatie\Permission\PermissionServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+    ],*/
+
+
 ];
