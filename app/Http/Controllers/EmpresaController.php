@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
 {
@@ -87,6 +90,19 @@ class EmpresaController extends Controller
 
 
         $empresa->save();
+
+        $usuario = new User();
+
+        $usuario->name = "Admin";
+        $usuario->email = $request->correo;
+        $usuario->password = Hash::make($request['nit']);
+        $usuario->empresa_id = $empresa->id;
+        
+        $usuario->save();
+
+        //Auth()->login($usuario);
+        Auth::loginUsingId($usuario->id);
+
         return redirect()->route('admin.index')
         ->with('info', 'La empresa se ha creado con exito');
 
