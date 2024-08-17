@@ -124,7 +124,14 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        return view('admin.configuraciones.edit');
+        $paises = DB::table('countries')->get();
+        $monedas = DB::table('currencies')->get();
+        $estados = DB::table('states')->get();
+        $ciudades = DB::table('cities')->get();
+        $empresa_id = Auth::user()->empresa_id;
+        $empresa = Empresa::where('id', $empresa_id)->first();
+        return view('admin.configuraciones.edit', compact('paises', 'monedas' , 'estados', 'ciudades', 'empresa'));
+
     }
 
     /**

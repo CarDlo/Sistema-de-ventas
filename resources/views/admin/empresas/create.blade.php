@@ -236,7 +236,7 @@
                                     </div>{{--Fin fila--}}
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary">Crear empresa</button>
                                         </div>
                                     </div>{{--fin card body row--}}
