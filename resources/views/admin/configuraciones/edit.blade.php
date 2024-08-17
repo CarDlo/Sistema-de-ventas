@@ -175,7 +175,7 @@
                                             <label for="pais">Pais</label>
                                             <select name="pais" id="select_pais" class="form-control">
                                                 @foreach ($paises as $pais)
-                                                    <option value="{{ $pais->id }}">{{ $pais->name }}</option>
+                                                    <option value="{{ $pais->id }}"{{$empresa->pais == $pais->id ? 'selected' : ''}}>{{ $pais->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('pais')
@@ -186,6 +186,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="departamento">Departamento</label>
+                                            <select name="departamento" id="select_departamento" class="form-control">
+                                                @foreach ($departamentos as $departamento)
+                                                    <option value="{{ $departamento->id }}"{{$empresa->departamento == $departamento->id ? 'selected' : ''}}>{{ $departamento->name }}</option>
+                                                @endforeach
+                                            </select>
                                             <div id="respuesta_pais">
 
                                             </div>
@@ -197,6 +202,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="ciudad">Ciudad</label>
+                                            <select name="ciudad" id="select_ciudad" class="form-control">
+                                                @foreach ($ciudades as $ciudad)
+                                                    <option value="{{ $ciudad->id }}"{{$empresa->ciudad == $ciudad->id ? 'selected' : ''}}>{{ $ciudad->name }}</option>
+                                                @endforeach
+                                            </select>
                                             <div id="respuesta_estado">
 
                                             </div>

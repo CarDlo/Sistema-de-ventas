@@ -330,7 +330,7 @@ return [
         ],*/
         [
             'text' => 'Configuracion',
-            'url' => 'admin/configuracion',
+            'url' => 'admin/configuraciones',
             'icon' => 'fa-solid fa-user-gear',
             'classes' => 'bg-info text-light',
             

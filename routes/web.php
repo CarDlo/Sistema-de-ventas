@@ -19,4 +19,4 @@ Route::get('/crear-empresas/estado/{id_estado}', [App\Http\Controllers\EmpresaCo
 Route::post('/crear-empresas/create', [App\Http\Controllers\EmpresaController::class, 'store'])->name('admin.empresas.store');
 
 //Rutas para configuraciones
-Route::get('/admin/configuracion', [App\Http\Controllers\EmpresaController::class, 'edit'])->name('admin.configuracion.edit')->middleware('auth');
+Route::get('/admin/configuraciones', [App\Http\Controllers\EmpresaController::class, 'edit'])->name('admin.configuracion.edit')->middleware('auth');
