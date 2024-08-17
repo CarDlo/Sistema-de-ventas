@@ -124,7 +124,7 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        //
+        return view('admin.configuraciones.edit');
     }
 
     /**

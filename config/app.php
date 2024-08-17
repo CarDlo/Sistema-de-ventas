@@ -123,16 +123,17 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'providers' => [
-        // ...
-        Spatie\Permission\PermissionServiceProvider::class,
+    // 'providers' => [
+    //     // Proveedores de servicios de Laravel
+    //     Illuminate\Filesystem\FilesystemServiceProvider::class,
+    //     Illuminate\Cache\CacheServiceProvider::class,
+    //     Illuminate\View\ViewServiceProvider::class,
 
-    ],
-
-    /*'providers' => [
+    // ],
+  /*  'providers' => [
         // ...
-        Spatie\Permission\PermissionServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
+       // Spatie\Permission\PermissionServiceProvider::class,
+        /*Illuminate\View\ViewServiceProvider::class,
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
     ],*/
