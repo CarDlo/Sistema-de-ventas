@@ -132,7 +132,7 @@
                                                 <label for="moneda">Moneda</label>
                                                 <select name="moneda" id="moneda" class="form-control">
                                                     @foreach ($monedas as $moneda)
-                                                        <option value="{{ $moneda->id }}">{{ $moneda->name }}</option>
+                                                        <option value="{{ $moneda->id }}">{{ $moneda->code }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('moneda')

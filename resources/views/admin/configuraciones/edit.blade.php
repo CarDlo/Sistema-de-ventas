@@ -22,13 +22,14 @@
 
             {{-- Card Body --}}
             <div class="card-body {{ $auth_type ?? 'login' }}-card-body {{ config('adminlte.classes_auth_body', '') }}">
-                <form class="form" method="post" action="{{ url('crear-empresas/create') }}" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{ url('/admin/configuraciones/'.$empresa->id) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('put')
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="logo" class="form-label">Logo de la empresa</label>
-                                <input accept=".png, .jpg, .jpeg" name="logo" class="form-control" type="file" id="logo" onchange="archivos(event)" required>
+                                <input accept=".png, .jpg, .jpeg" name="logo" class="form-control" type="file" id="logo" onchange="archivos(event)">
                                 @error('logo')
                                     <div class="alert alert-danger">Completa este campo</div>
                                 @enderror
@@ -121,7 +122,7 @@
                                         <label for="moneda">Moneda</label>
                                         <select name="moneda" id="moneda" class="form-control">
                                             @foreach ($monedas as $moneda)
-                                                <option value="{{ $moneda->id }}">{{ $moneda->name }}</option>
+                                                <option value="{{ $moneda->id }}"{{$empresa->moneda == $moneda->id ? 'selected' : ''}}>{{ $moneda->code }}</option>
                                             @endforeach
                                         </select>
                                         @error('moneda')
@@ -156,7 +157,7 @@
                                             <label for="codigo_postal">Codigo postal</label>
                                             <select name="codigo_postal" id="pais" class="form-control">
                                                 @foreach ($paises as $pais)
-                                                    <option value="{{ $pais->phone_code }}">{{ $pais->phone_code }}</option>
+                                                    <option value="{{ $pais->phone_code }}"{{$empresa->codigo_postal == $pais->phone_code ? 'selected' : ''}}>{{ $pais->phone_code }}</option>
                                                 @endforeach
                                             </select>
                                             @error('codigo_postal')
@@ -349,4 +350,39 @@ async defer></script>
         });
     }
 </script>
+<script>
+    $('#select_pais').on('change', function() {
+         var id_pais =  $('#select_pais').val();   
+         if (id_pais) {
+             $.ajax({
+                 type: "GET",
+                 url: "{{url('/admin/configuraciones/pais')}}/"+id_pais,
+                 success: function (data) {
+                     $('#select_departamento').css("display", "none");
+                     $('#respuesta_pais').html(data);
+                 }
+             })
+         }else{
+             alert('Por favor seleccione un pais');
+         }                                        
+     })
+     </script>
+    <script>
+        $(document).on('change', '#select_estado', function() {
+            var id_estado = $(this).val();
+            if (id_estado) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{url('/admin/configuraciones/estado')}}/"+id_estado,
+                    success: function (data) {
+                        $('#select_ciudad').css("display", "none");
+                        $('#respuesta_estado').html(data);
+                    }
+                })
+            }else{
+                alert('Por favor seleccione un estado');
+            }
+        })
+
+     </script>
 @stop

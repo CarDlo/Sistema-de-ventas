@@ -20,3 +20,6 @@ Route::post('/crear-empresas/create', [App\Http\Controllers\EmpresaController::c
 
 //Rutas para configuraciones
 Route::get('/admin/configuraciones', [App\Http\Controllers\EmpresaController::class, 'edit'])->name('admin.configuracion.edit')->middleware('auth');
+Route::get('/admin/configuraciones/pais/{id_pais}', [App\Http\Controllers\EmpresaController::class, 'buscar_estado'])->name('admin.empresas.create.buscar_estado');
+Route::get('/admin/configuraciones/estado/{id_estado}', [App\Http\Controllers\EmpresaController::class, 'buscar_ciudad'])->name('admin.empresas.create.buscar_ciudad');
+Route::put('/admin/configuraciones/{id}', [App\Http\Controllers\EmpresaController::class, 'update'])->name('admin.configuraciones.update');
