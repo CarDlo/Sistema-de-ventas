@@ -150,9 +150,9 @@ class EmpresaController extends Controller
         $request->validate([
             'nombre_empresa' => 'required',
             //La regla unique:empresas.nit.'.$id en Laravel asegura que el valor del campo nit sea único en la columna nit de la tabla empresas. Permite una excepción para el registro con el ID igual a $id, lo cual es útil al actualizar un registro, evitando conflictos si el nit ya pertenece al mismo registro
-            'nit' => 'required|unique:empresas.nit.'.$id,
+            'nit' => 'required|unique:empresas,nit,'.$id,
             'telefono' => 'required',
-            'correo' => 'required|unique:empresas.correo.'.$id,
+            'correo' => 'required|unique:empresas,correo,'.$id,
             'direccion' => 'required',
             'cantidad_impuesto' => 'required',
             'nombre_impuesto' => 'required',
@@ -161,6 +161,7 @@ class EmpresaController extends Controller
            
           ]);
 
+          
           $empresa = Empresa::find($id);
           $empresa->pais = $request->pais;
           $empresa->nombre_empresa = $request->nombre_empresa;
@@ -176,10 +177,10 @@ class EmpresaController extends Controller
           $empresa->departamento = $request->departamento;
           $empresa->codigo_postal = $request->codigo_postal;
 
-        //   if($request->hasFile('logo')){
-        //     Storage::delete('public/'.$empresa->logo);
-        //     $empresa->logo = $request->file('logo')->store('logos', 'public');
-        //   }
+          if($request->hasFile('logo')){
+            Storage::delete('public/'.$empresa->logo);
+            $empresa->logo = $request->file('logo')->store('logos', 'public');
+          }
           
   
   
