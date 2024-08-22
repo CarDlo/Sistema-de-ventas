@@ -196,7 +196,8 @@ class EmpresaController extends Controller
         //   $usuario->save();
 
           return redirect()->route('admin.index')
-          ->with('info', 'Se modifico los datos de la empresa con exito');
+          ->with('mensaje', 'Se modifico los datos de la empresa con exito')
+          ->with('icono', 'success');
     }
 
     /**
