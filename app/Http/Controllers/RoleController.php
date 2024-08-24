@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.roles.create');
     }
 
     /**
@@ -27,7 +27,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos =request()->all();
+        return response()->json($datos);
     }
 
     /**
