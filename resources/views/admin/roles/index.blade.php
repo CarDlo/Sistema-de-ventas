@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-outline card-primary">
                 <div class="card-header">
                 <h3 class="card-title">Roles registrados</h3>
@@ -29,24 +29,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            @forEach($roles as $role)
+                            <tr>
+                                <th style="text-align: center" scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $role->name }}</td>
+                                <td style="text-align: center">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-
-                        </tr>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     

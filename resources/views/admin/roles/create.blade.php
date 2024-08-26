@@ -20,7 +20,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="name">Nombre del rol</label>
-                                        <input value=""  name="name" type="text" class="form-control" id="name" required>
+                                        <input value="{{old('name')}}"  name="name" type="text" class="form-control" id="name" required>
+                                        @error('name')
+                                        <small style="">{{ $message }}</small>
+                                        @enderror
                                     </div>{{-- cierre formgroup --}}
                                 </div>{{-- cierre col-12 --}}
                             </div>{{-- cierre row --}}
