@@ -35,8 +35,8 @@
                                 <td>{{ $role->name }}</td>
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                                        <a href="{{ url('/admin/roles', $role->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ url('/admin/roles/'.$role->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </td>

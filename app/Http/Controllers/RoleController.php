@@ -55,9 +55,10 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.roles.show', compact('role'));
     }
 
     /**
@@ -65,7 +66,8 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.roles.edit', compact('role'));
     }
 
     /**
@@ -73,7 +75,25 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+        $request->validate([
+            'name' => 'required|unique:roles,name,'.$id,
+
+            
+          ]);
+          $rol = Role::find($id);
+          $rol->name = $request->name;
+          $rol->guard_name = "web";
+         
+  
+  
+          $rol->save();
+
+  
+          return redirect()->route('admin.roles.index')
+          ->with('mensaje', 'Se modifico el rol corectamente')
+          ->with('icono', 'success');
+    
     }
 
     /**

@@ -2,29 +2,23 @@
 
 
 @section('content_header')
-    <h1>Modificar rol</h1>
+    <h1>Detalle del rol</h1>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="card card-outline card-success">
+            <div class="card card-outline card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Ingrese los datos</h3>
+                        <h3 class="card-title">Datos registrados</h3>
                     </div>
                 
                     <div class="card-body">
-                        <form action="{{ url('/admin/roles', $role->id) }}" method="post">
-                            @csrf
-                            @method('put')
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="name">Nombre del rol</label>
-                                        <input value="{{$role->name}}"  name="name" type="text" class="form-control" id="name" required>
-                                        @error('name')
-                                        <small style="">{{ $message }}</small>
-                                        @enderror
+                                        <p>{{$role->name}}</p>
                                     </div>{{-- cierre formgroup --}}
                                 </div>{{-- cierre col-12 --}}
                             </div>{{-- cierre row --}}
@@ -32,12 +26,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">Modificar</button>
+                                        <a href="{{ route('admin.roles.index') }}" class="btn btn-primary">Volver</a>
                                     </div>{{-- cierre formgroup --}}
                                 </div>{{-- cierre col-12 --}}
                             </div>{{-- cierre row --}}
 
-                        </form>
                     </div>
 
             </div>
