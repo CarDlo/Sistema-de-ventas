@@ -37,7 +37,33 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ url('/admin/roles', $role->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                                         <a href="{{ url('/admin/roles/'.$role->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        <form action="{{ url('/admin/roles/'.$role->id) }}" method="post" onclick="preguntar{{ $role->id }}(event)" id="miFormulario{{ $role->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        <script>
+                                            function preguntar{{ $role->id }}(event) {
+                                                event.preventDefault();
+                                                Swal.fire({
+                                                            title: "¿Desea eliminar el rol?",
+                                                            showDenyButton: false,
+                                                            icon: 'question',
+                                                            showCancelButton: true,
+                                                            confirmButtonText: "Eliminar",
+                                                            cancelButtonText: "Cancelar",
+                                                            confirmButtonColor: "#dc3545",
+                                                            
+                                                            }).then((result) => {
+                                                            /* Read more about isConfirmed, isDenied below */
+                                                                if (result.isConfirmed) {
+                                                                    document.getElementById("miFormulario{{ $role->id }}").submit();
+                                                                    //Swal.fire("Eliminando", "", "success");
+                                                                } 
+                                                            });
+                                            }
+                                        </script>
+                                        
                                     </div>
                                 </td>
 

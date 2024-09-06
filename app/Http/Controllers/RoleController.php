@@ -47,7 +47,7 @@ class RoleController extends Controller
           $rol->save();
 
   
-          return redirect()->route('admin.index')
+          return redirect()->route('admin.roles.index')
           ->with('mensaje', 'Se registro el rol corectamente')
           ->with('icono', 'success');
     }
@@ -101,6 +101,9 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Role::destroy($id);
+        return redirect()->route('admin.roles.index')
+        ->with('mensaje', 'Se elimino el rol correctamente')
+        ->with('icono', 'success');
     }
 }
