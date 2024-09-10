@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h1>Roles de usuario</h1>
+    <h1>Listado de usuarios</h1>
 @stop
 
 @section('content')
@@ -10,9 +10,9 @@
         <div class="col-md-6">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                <h3 class="card-title">Roles registrados</h3>
+                <h3 class="card-title">Usuarios registrados</h3>
                     <div class="card-tools">
-                    <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.create') }}">Crear nuevo</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('admin.usuarios.create') }}">Crear nuevo</a>
 
                     </div>
                 
@@ -24,26 +24,28 @@
                         <tr>
                             <th scope="col">Nro</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Acciones</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                            @forEach($roles as $role)
+                            @forEach($usuarios as $usuario)
                             <tr>
                                 <th style="text-align: center" scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $role->name }}</td>
+                                <td>{{ $usuario->name }}</td>
+                                <td>{{ $usuario->email }}</td>
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ url('/admin/roles', $role->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ url('/admin/roles/'.$role->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ url('/admin/roles/'.$role->id) }}" method="post" onclick="preguntar{{ $role->id }}(event)" id="miFormulario{{ $role->id }}">
+                                        <a href="{{ url('/admin/usuarios', $usuario->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ url('/admin/usuarios/'.$usuario->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                                        <form action="{{ url('/admin/usuarios/'.$usuario->id) }}" method="post" onclick="preguntar{{ $usuario->id }}(event)" id="miFormulario{{ $usuario->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button style="border-radius: 0px 3px 3px 0px" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                         </form>
                                         <script>
-                                            function preguntar{{ $role->id }}(event) {
+                                            function preguntar{{ $usuario->id }}(event) {
                                                 event.preventDefault();
                                                 Swal.fire({
                                                             title: "¿Desea eliminar el rol?",
@@ -57,7 +59,7 @@
                                                             }).then((result) => {
                                                             /* Read more about isConfirmed, isDenied below */
                                                                 if (result.isConfirmed) {
-                                                                    document.getElementById("miFormulario{{ $role->id }}").submit();
+                                                                    document.getElementById("miFormulario{{ $usuario->id }}").submit();
                                                                     //Swal.fire("Eliminando", "", "success");
                                                                 } 
                                                             });
@@ -80,12 +82,7 @@
             </div>
             
         </div>
-        <div class="col-md-6">
-            {{-- ///////////////////////////////////////////////////////////////// --}}
 
-
-            {{-- ///////////////////////////////////////////////////////////////// --}}
-        </div>
 
     </div>
 @stop
