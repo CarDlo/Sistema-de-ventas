@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
@@ -35,7 +36,26 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $datos = request()->all();
+        // return response()->json($datos);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->empresa_id = Auth::user()->empresa_id;
+        $user->save();
+        $user->assignRole($request->role);
+
+        return redirect()->route('admin.usuarios.index')
+          ->with('mensaje', 'Se creo usuario correctamente')
+          ->with('icono', 'success');
     }
 
     /**

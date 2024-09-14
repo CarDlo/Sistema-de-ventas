@@ -14,13 +14,13 @@
                     </div>
                 
                     <div class="card-body">
-                        <form action="{{ route('admin.usuarios.create') }}" method="post">
+                        <form action="{{ route('admin.usuarios.store') }}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="role">Nombre del rol</label>
-                                       <select name="role" id="" class="form-control">
+                                       <select name="role" id="role" class="form-control">
                                            @foreach ($roles as $role)
                                                <option value="{{ $role->name }}">{{ $role->name }}</option>
                                            @endforeach
@@ -70,7 +70,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <a href="{{ route('admin.usuarios.index') }}" class="btn btn-danger">Cancelar</a>
+                                        <a href="{{ route('admin.usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
                                         <button type="submit" class="btn btn-primary">Registrar</button>
                                     </div>{{-- cierre formgroup --}}
                                 </div>{{-- cierre col-12 --}}
