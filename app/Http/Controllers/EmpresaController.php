@@ -99,8 +99,9 @@ class EmpresaController extends Controller
         $usuario->password = Hash::make($request['nit']);
         $usuario->empresa_id = $empresa->id;
         
+        
         $usuario->save();
-
+        $usuario->assignRole('Administrador');
         //Auth()->login($usuario);
         Auth::loginUsingId($usuario->id);
 

@@ -103,7 +103,7 @@ class RoleController extends Controller
     {
         Role::destroy($id);
         return redirect()->route('admin.roles.index')
-        ->with('mensaje', 'Se elimino el rol correctamente')
+        ->with('mensaje', 'Se elimino la empresa correctamente')
         ->with('icono', 'success');
     }
 }

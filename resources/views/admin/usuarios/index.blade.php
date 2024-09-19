@@ -24,6 +24,7 @@
                         <tr>
                             <th scope="col">Nro</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Rol</th> 
                             <th scope="col">Email</th>
                             <th scope="col">Acciones</th>
 
@@ -34,6 +35,7 @@
                             <tr>
                                 <th style="text-align: center" scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $usuario->name }}</td>
+                                <td>{{ $usuario->roles->pluck('name')->implode(', ') }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td style="text-align: center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
